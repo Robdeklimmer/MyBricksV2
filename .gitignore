@@ -1,0 +1,36 @@
+# ── .NET / Backend ───────────────────────────────────────────
+backend/src/**/bin/
+backend/src/**/obj/
+backend/tests/**/bin/
+backend/tests/**/obj/
+backend/tools/**/bin/
+backend/tools/**/obj/
+backend/**/*.user
+backend/.vs/
+
+# EF Core migrations are committed — do NOT ignore them
+# backend/src/**/Migrations/
+
+# Secrets — never commit these
+backend/src/MyBricks.API/appsettings.Development.local.json
+
+# ── React / Frontend ─────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+
+# ── VS / Editor ──────────────────────────────────────────────
+.vs/
+.vscode/*
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+
+# ── OS ───────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.log
