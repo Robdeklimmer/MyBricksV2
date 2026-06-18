@@ -31,9 +31,17 @@ public class GetMySetsQueryHandler : IRequestHandler<GetMySetsQuery, IReadOnlyLi
         return sets.Select(s => new UserSetDto
         {
             Id = s.Id,
-            RebrickableSetNum = s.LegoSet.RebrickableSetNum,
-            Name = s.LegoSet.Name,
-            ImageUrl = s.LegoSet.ImageUrl,
+            LegoSet = new LegoSetDto
+            {
+                Id = s.LegoSet.Id,
+                RebrickableSetNum = s.LegoSet.RebrickableSetNum,
+                Name = s.LegoSet.Name,
+                Year = s.LegoSet.Year,
+                Theme = s.LegoSet.Theme,
+                TotalParts = s.LegoSet.TotalParts,
+                ImageUrl = s.LegoSet.ImageUrl,
+                LastSyncedAt = s.LegoSet.LastSyncedAt
+            },
             FamilyGroupId = s.FamilyGroupId,
             IsComplete = s.IsComplete,
             AddedAt = s.AddedAt

@@ -1,0 +1,158 @@
+/* ── Sets Page ───────────────────────────────────────────────── */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.headerSub {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+/* ── Add button ──────────────────────────────────────────────── */
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 10px var(--space-4);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: none;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.addBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-blue);
+}
+
+.addBtn:active {
+  transform: translateY(0);
+}
+
+/* ── Search bar ──────────────────────────────────────────────── */
+.searchWrap {
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-faint);
+  display: flex;
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  max-width: 480px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-md);
+  padding: 10px 16px 10px 40px;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.searchInput::placeholder {
+  color: var(--color-text-faint);
+}
+
+.searchInput:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-glow);
+}
+
+/* ── Card grid ───────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-5);
+  animation: fadeIn 300ms ease forwards;
+}
+
+/* ── Empty state ─────────────────────────────────────────────── */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-8) var(--space-5);
+  gap: var(--space-4);
+  animation: fadeIn 300ms ease forwards;
+}
+
+.emptyIcon {
+  color: var(--color-text-faint);
+  opacity: 0.5;
+}
+
+.emptyTitle {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.emptyText {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  max-width: 360px;
+  line-height: 1.6;
+}
+
+/* ── Skeleton card ───────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  border-radius: var(--radius-lg);
+  aspect-ratio: 3 / 4;
+  background: linear-gradient(
+    90deg,
+    var(--color-surface) 25%,
+    var(--color-surface-2) 50%,
+    var(--color-surface) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+/* ── Error banner ────────────────────────────────────────────── */
+.errorBanner {
+  padding: var(--space-3) var(--space-4);
+  background: rgba(244, 63, 94, 0.08);
+  border: 1px solid rgba(244, 63, 94, 0.2);
+  border-radius: var(--radius-md);
+  color: var(--color-accent);
+  font-size: 0.875rem;
+  font-weight: 500;
+}

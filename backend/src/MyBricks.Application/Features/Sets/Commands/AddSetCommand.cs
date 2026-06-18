@@ -95,9 +95,17 @@ public class AddSetCommandHandler : IRequestHandler<AddSetCommand, UserSetDto>
         return new UserSetDto
         {
             Id = userSet.Id,
-            RebrickableSetNum = legoSet.RebrickableSetNum,
-            Name = legoSet.Name,
-            ImageUrl = legoSet.ImageUrl,
+            LegoSet = new LegoSetDto
+            {
+                Id = legoSet.Id,
+                RebrickableSetNum = legoSet.RebrickableSetNum,
+                Name = legoSet.Name,
+                Year = legoSet.Year,
+                Theme = legoSet.Theme,
+                TotalParts = legoSet.TotalParts,
+                ImageUrl = legoSet.ImageUrl,
+                LastSyncedAt = legoSet.LastSyncedAt
+            },
             FamilyGroupId = userSet.FamilyGroupId,
             IsComplete = userSet.IsComplete,
             AddedAt = userSet.AddedAt
