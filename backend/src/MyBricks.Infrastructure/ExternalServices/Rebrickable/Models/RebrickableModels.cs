@@ -23,6 +23,18 @@ public class RebrickableSetResponse
     public string? SetImgUrl { get; set; }
 }
 
+public class RebrickableThemeResponse
+{
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+
+    [JsonPropertyName("parent_id")]
+    public int? ParentId { get; set; }
+
+    [JsonPropertyName("name")]
+    public string Name { get; set; } = string.Empty;
+}
+
 public class RebrickablePartResponse
 {
     [JsonPropertyName("part_num")]

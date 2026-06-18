@@ -59,18 +59,24 @@ public class AddSetCommandHandler : IRequestHandler<AddSetCommand, UserSetDto>
                 throw new DomainException("You must be a member of the family group to add a set to it.");
         }
 
+        var setNum = request.RebrickableSetNum;
+        if (!setNum.Contains("-"))
+        {
+            setNum += "-1";
+        }
+
         // 1. Get or create the Canonical LegoSet
-        var legoSet = await _legoSetRepository.GetByRebrickableNumAsync(request.RebrickableSetNum, cancellationToken);
+        var legoSet = await _legoSetRepository.GetByRebrickableNumAsync(setNum, cancellationToken);
 
         if (legoSet == null)
         {
             // Fetch from Rebrickable
-            var fetchedSet = await _rebrickableClient.GetSetDetailsAsync(request.RebrickableSetNum, cancellationToken);
+            var fetchedSet = await _rebrickableClient.GetSetDetailsAsync(setNum, cancellationToken);
             if (fetchedSet == null)
-                throw new NotFoundException("RebrickableSet", request.RebrickableSetNum);
+                throw new NotFoundException("RebrickableSet", setNum);
 
             // Fetch parts
-            var parts = await _rebrickableClient.GetSetPartsAsync(request.RebrickableSetNum, cancellationToken);
+            var parts = await _rebrickableClient.GetSetPartsAsync(setNum, cancellationToken);
             foreach (var setPart in parts)
             {
                 fetchedSet.SetParts.Add(setPart);

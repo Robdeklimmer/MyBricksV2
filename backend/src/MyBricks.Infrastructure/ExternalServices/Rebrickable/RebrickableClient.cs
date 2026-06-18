@@ -45,7 +45,7 @@ public class RebrickableClient : IRebrickableClient
                 RebrickableSetNum = data.SetNum,
                 Name = data.Name,
                 Year = data.Year,
-                Theme = data.ThemeId.ToString(), // Might need a separate call to map theme ID to name, but ID works for now
+                Theme = await GetRootThemeNameAsync(data.ThemeId, ct),
                 TotalParts = data.NumParts,
                 ImageUrl = data.SetImgUrl,
                 LastSyncedAt = DateTime.UtcNow
@@ -55,6 +55,33 @@ public class RebrickableClient : IRebrickableClient
         {
             _logger.LogError(ex, "Error fetching set details from Rebrickable for {SetNum}", setNum);
             throw;
+        }
+    }
+
+    private async Task<string> GetRootThemeNameAsync(int themeId, CancellationToken ct)
+    {
+        try
+        {
+            int currentId = themeId;
+            while (true)
+            {
+                var response = await _httpClient.GetAsync($"lego/themes/{currentId}/", ct);
+                if (!response.IsSuccessStatusCode) return "Unknown";
+
+                var theme = await response.Content.ReadFromJsonAsync<RebrickableThemeResponse>(cancellationToken: ct);
+                if (theme == null) return "Unknown";
+
+                // If parent_id is null, this is the root theme
+                if (theme.ParentId == null) return theme.Name;
+
+                // Otherwise, keep walking up the tree
+                currentId = theme.ParentId.Value;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to resolve root theme name for theme id {ThemeId}", themeId);
+            return "Unknown";
         }
     }
 

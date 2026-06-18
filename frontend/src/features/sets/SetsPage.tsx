@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { SetCard } from '../../components/shared/SetCard'
+import { AddSetModal } from './components/AddSetModal'
 import { useSets } from './hooks/useSets'
 import { useGroupStore } from '../../store/groupStore'
 import styles from './SetsPage.module.css'
@@ -36,6 +37,7 @@ function SkeletonCard() {
 export function SetsPage() {
   const { activeGroupId, activeGroupName } = useGroupStore()
   const [search, setSearch] = useState('')
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false)
 
   const { data: sets = [], isLoading, isError } = useSets(activeGroupId)
 
@@ -55,7 +57,7 @@ export function SetsPage() {
 
   // TODO: Wire up to add set modal/flow
   const handleAddSet = () => {
-    console.log('Open add set dialog')
+    setIsAddModalOpen(true)
   }
 
   return (
@@ -142,6 +144,12 @@ export function SetsPage() {
           )}
         </div>
       )}
+
+      {/* ── Modals ────────────────────────────────────────────── */}
+      <AddSetModal 
+        isOpen={isAddModalOpen} 
+        onClose={() => setIsAddModalOpen(false)} 
+      />
     </div>
   )
 }
