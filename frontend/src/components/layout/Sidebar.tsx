@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { useAuthStore } from '../../store/authStore'
+import { GroupSwitcher } from './GroupSwitcher'
 import styles from './Sidebar.module.css'
 
 /* ── Inline SVG icons (no external dependency) ──────────────── */
@@ -70,6 +71,8 @@ export function Sidebar() {
         </div>
         <span className={styles.logoText}>MyBricks</span>
       </div>
+
+      <GroupSwitcher />
 
       {/* Nav label */}
       <p className={styles.navLabel}>Navigation</p>

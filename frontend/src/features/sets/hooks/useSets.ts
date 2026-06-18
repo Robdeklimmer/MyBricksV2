@@ -7,10 +7,10 @@ import { setsApi } from '../../../api/sets.api'
  * Query key includes familyGroupId so React Query caches each group separately.
  * Data is considered fresh for 2 minutes, then refetched in the background.
  */
-export function useSets(familyGroupId?: number) {
+export function useSets(activeGroupId: number | null) {
   return useQuery({
-    queryKey: ['sets', familyGroupId ?? null],
-    queryFn: () => setsApi.getSets(familyGroupId),
+    queryKey: ['sets', activeGroupId],
+    queryFn: () => setsApi.getSets(activeGroupId ?? undefined),
     staleTime: 1000 * 60 * 2, // 2 minutes
   })
 }

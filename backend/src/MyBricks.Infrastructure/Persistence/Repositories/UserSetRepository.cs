@@ -25,7 +25,7 @@ public class UserSetRepository : IUserSetRepository
     {
         return await _context.UserSets
             .Include(u => u.LegoSet)
-            .Where(u => u.UserId == userId) // All sets belonging to the user
+            .Where(u => u.UserId == userId && u.FamilyGroupId == null) // Personal lists only
             .OrderByDescending(u => u.AddedAt)
             .ToListAsync(ct);
     }

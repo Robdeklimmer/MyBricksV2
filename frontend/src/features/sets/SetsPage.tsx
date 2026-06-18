@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { SetCard } from '../../components/shared/SetCard'
 import { useSets } from './hooks/useSets'
+import { useGroupStore } from '../../store/groupStore'
 import styles from './SetsPage.module.css'
 
 /* ── Icons ───────────────────────────────────────────────────── */
@@ -33,9 +34,10 @@ function SkeletonCard() {
 
 /* ── Page ────────────────────────────────────────────────────── */
 export function SetsPage() {
+  const { activeGroupId, activeGroupName } = useGroupStore()
   const [search, setSearch] = useState('')
 
-  const { data: sets = [], isLoading, isError } = useSets()
+  const { data: sets = [], isLoading, isError } = useSets(activeGroupId)
 
   const filtered = sets.filter((s) =>
     s.legoSet.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -128,7 +130,9 @@ export function SetsPage() {
           <p className={styles.emptyText}>
             {search
               ? `No sets match "${search}". Try a different search.`
-              : 'Add your first LEGO set to start tracking your collection.'}
+              : activeGroupId === null 
+                ? 'Add your first LEGO set to start tracking your collection.'
+                : `No sets have been added to ${activeGroupName} yet.`}
           </p>
           {!search && (
             <button className={styles.addBtn} onClick={handleAddSet}>
