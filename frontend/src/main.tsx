@@ -5,6 +5,17 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import App from './App'
 import './index.css'
 
+// ── Apply persisted theme before first render (avoids flash) ──
+;(() => {
+  try {
+    const stored = localStorage.getItem('mybricks-theme')
+    const theme = stored ? (JSON.parse(stored) as { state?: { theme?: string } }).state?.theme : null
+    document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' : 'dark')
+  } catch {
+    document.documentElement.setAttribute('data-theme', 'dark')
+  }
+})()
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

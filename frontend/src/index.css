@@ -6,25 +6,27 @@
 
 /* ── CSS Custom Properties ─────────────────────────────────── */
 :root {
-  /* Brand colours */
-  --color-primary:        #f5a623;   /* LEGO yellow */
-  --color-primary-dark:   #d4891a;
-  --color-primary-light:  #ffc85a;
+  /* ── Brand — Cobalt Blue ──────────────────────────────────── */
+  /* Change these 3 tokens to retheme the entire app instantly  */
+  --color-primary:        #2563eb;   /* Cobalt Blue */
+  --color-primary-dark:   #1d4ed8;   /* Darker cobalt for hover */
+  --color-primary-light:  #60a5fa;   /* Lighter blue for glow/gradient */
+  --color-primary-glow:   rgba(37, 99, 235, 0.25); /* Box-shadow glow */
 
   /* Accent */
-  --color-accent:         #e63946;   /* Alert red */
-  --color-accent-green:   #2a9d8f;   /* Success teal */
+  --color-accent:         #f43f5e;   /* Rose red – destructive/alert */
+  --color-accent-green:   #10b981;   /* Emerald – success */
 
-  /* Backgrounds (dark mode first) */
-  --color-bg:             #0f1117;
-  --color-surface:        #1a1d27;
-  --color-surface-2:      #252836;
-  --color-surface-border: rgba(255,255,255,0.08);
+  /* Backgrounds */
+  --color-bg:             #0a0b14;   /* Deep dark background */
+  --color-surface:        #11131f;   /* Sidebar / card surface */
+  --color-surface-2:      #1c1f31;   /* Input bg / raised elements */
+  --color-surface-border: rgba(37, 99, 235, 0.12); /* Tinted border */
 
   /* Text */
   --color-text:           #f0f2f8;
-  --color-text-muted:     #9ca3af;
-  --color-text-faint:     #6b7280;
+  --color-text-muted:     #94a3b8;
+  --color-text-faint:     #64748b;
 
   /* Radii */
   --radius-sm:  6px;
@@ -33,9 +35,10 @@
   --radius-xl:  28px;
 
   /* Shadows */
-  --shadow-sm:  0 1px 3px rgba(0,0,0,0.4);
-  --shadow-md:  0 4px 16px rgba(0,0,0,0.5);
-  --shadow-lg:  0 8px 32px rgba(0,0,0,0.6);
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.5);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.55);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.65);
+  --shadow-blue: 0 4px 20px rgba(37, 99, 235, 0.3);
 
   /* Spacing scale */
   --space-1:  4px;
@@ -55,8 +58,26 @@
   --transition-fast:   150ms ease;
   --transition-normal: 250ms ease;
 
-  /* Sidebar width */
-  --sidebar-width: 240px;
+  /* Sidebar & Navbar dimensions */
+  --sidebar-width:  252px;
+  --navbar-height:  62px;
+}
+
+/* ── Light Mode Overrides ───────────────────────────────────── */
+/* Only surface/background/text tokens change. Brand colors stay identical. */
+[data-theme="light"] {
+  --color-bg:             #f1f5f9;
+  --color-surface:        #ffffff;
+  --color-surface-2:      #f8fafc;
+  --color-surface-border: rgba(37, 99, 235, 0.15);
+
+  --color-text:           #0f172a;
+  --color-text-muted:     #475569;
+  --color-text-faint:     #94a3b8;
+
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.1);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.12);
 }
 
 /* ── Reset ──────────────────────────────────────────────────── */

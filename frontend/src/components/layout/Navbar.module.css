@@ -1,42 +1,115 @@
+/* ── Navbar ──────────────────────────────────────────────────── */
 .navbar {
-  height: 60px;
+  height: var(--navbar-height);
   background: var(--color-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-surface-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--space-6);
   flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
+/* ── Left: page title ─────────────────────────────────────────── */
 .left {
   display: flex;
   align-items: center;
   gap: var(--space-4);
 }
 
+.pageTitle {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+/* ── Right: user pill + sign out ─────────────────────────────── */
 .right {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-3);
+}
+
+.userPill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 5px var(--space-3) 5px 5px;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-surface-border);
+  border-radius: 999px;
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .username {
-  font-size: 0.875rem;
+  font-size: 0.82rem;
   color: var(--color-text-muted);
   font-weight: 500;
+  padding-right: var(--space-1);
 }
 
+.divider {
+  width: 1px;
+  height: 20px;
+  background: var(--color-surface-border);
+}
+
+/* ── Icon-only button (theme toggle) ─────────────────────────── */
+.iconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+  flex-shrink: 0;
+}
+
+.iconBtn:hover {
+  color: var(--color-primary);
+  background: rgba(37, 99, 235, 0.08);
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
+/* ── Logout button ────────────────────────────────────────────── */
 .logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-text-faint);
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-sm);
   transition: all var(--transition-fast);
+  border: 1px solid transparent;
 }
 
 .logoutBtn:hover {
   color: var(--color-accent);
-  background: rgba(230,57,70,0.1);
+  background: rgba(244, 63, 94, 0.08);
+  border-color: rgba(244, 63, 94, 0.15);
 }
